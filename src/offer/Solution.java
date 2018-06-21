@@ -113,7 +113,7 @@ public class Solution {
     }
 
     // 6.旋转数组的最小数字
-    public int minNumberInRotateArray(int [] array) {
+    public int minNumberInRotateArray(int[] array) {
         if (array == null || array.length == 0)
             return 0;
         int left = 0;
@@ -121,14 +121,14 @@ public class Solution {
         int mid = 0;
 
         while (array[left] >= array[right]) {
-            if(right - left <= 1) {
+            if (right - left <= 1) {
                 mid = right;
                 break;
             }
-            mid = (left + right)/2;
+            mid = (left + right) / 2;
             if (array[left] == array[mid] && array[mid] == array[right]) {
-                if (array[left+1] != array[right-1]) {
-                    mid = array[left+1] < array[right-1] ? left+1:right-1;
+                if (array[left + 1] != array[right - 1]) {
+                    mid = array[left + 1] < array[right - 1] ? left + 1 : right - 1;
                 } else {
                     left++;
                     right--;
@@ -145,5 +145,23 @@ public class Solution {
         return array[mid];
     }
 
+    // 7.斐波那契数列
+    public int Fibonacci(int n) {
+        int result = 0;
+        int preOne = 1;
+        int preTwo = 0;
 
+        if (n == 0) {
+            return preTwo;
+        }
+        if (n == 1) {
+            return preOne;
+        }
+        for (int i = 2; i <= n; i++) {
+            result = preOne + preTwo;
+            preTwo = preOne;
+            preOne = result;
+        }
+        return result;
+    }
 }
