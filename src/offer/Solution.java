@@ -164,4 +164,24 @@ public class Solution {
         }
         return result;
     }
+
+    // 8.跳台阶
+    public int JumpFloor(int target) {
+        int result = 0;
+        int preOne = 1;
+        int preTwo = 0;
+
+        if (target == 0) {
+            return preTwo;
+        }
+        if (target == 1) {
+            return preOne;
+        }
+        for (int i = 2; i <= target + 1; i++) {
+            result = preOne + preTwo;
+            preTwo = preOne;
+            preOne = result;
+        }
+        return result;
+    }
 }
