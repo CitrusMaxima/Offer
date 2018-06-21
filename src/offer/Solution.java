@@ -216,4 +216,29 @@ public class Solution {
         }
         return count;
     }
+
+    // 12.数值的整数次方
+    public double Power(double base, int exponent) {
+        double res = 0;
+        if (base == 0.0) {
+            return 0;
+        }
+        if (exponent == 0) {
+            return 1.0;
+        }
+        if (exponent > 0) {
+            res = mutiply(base,exponent);
+        }else {
+            res = mutiply(1/base,-exponent);
+        }
+        return res;
+    }
+
+    public double mutiply(double base, int e) {
+        double sum = 1;
+        for (int i = 0; i < e; i++) {
+            sum = sum * base;
+        }
+        return sum;
+    }
 }
