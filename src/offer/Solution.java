@@ -2,7 +2,7 @@ package offer;
 
 public class Solution {
 
-    // 二维数组中的查找
+    // 1.二维数组中的查找
     public boolean Find(int target, int [][] array) {
 
         int row = array.length;
@@ -27,9 +27,19 @@ public class Solution {
         return false;
     }
 
-    // 替换空格
+    // 2.替换空格
     public String replaceSpace(StringBuffer str) {
 
-        return null;
+        StringBuffer result = new StringBuffer();
+        int length = str.length();
+        for (int i = 0; i < length; ++i) {
+            if (str.charAt(i) != ' ') {
+                result.append(str.charAt(i));
+            } else {
+                result.append("%20");
+            }
+        }
+
+        return result.toString();
     }
 }
