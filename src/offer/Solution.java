@@ -288,4 +288,20 @@ public class Solution {
         return slow;
     }
 
+    // 15.反转链表
+    public ListNode ReverseList(ListNode head) {
+        if (head == null)
+            return null;
+
+        ListNode newHead = null;
+        while (head != null) {
+            ListNode temp = head.next;
+            head.next = newHead;
+            newHead = head;
+            head = temp;
+        }
+
+        return newHead;
+    }
+
 }
