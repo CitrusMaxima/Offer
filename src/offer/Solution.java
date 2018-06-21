@@ -187,7 +187,7 @@ public class Solution {
 
     // 9.变态跳台阶
     public int JumpFloorII(int target) {
-        return (int) Math.pow(2,target-1);
+        return (int) Math.pow(2, target - 1);
     }
 
     // 10.矩形覆盖
@@ -196,7 +196,7 @@ public class Solution {
         int sum = 1;
         if (target <= 0)
             return 0;
-        if (target == 1 ) {
+        if (target == 1) {
             return 1;
         }
 
@@ -205,5 +205,15 @@ public class Solution {
             number = sum - number;
         }
         return sum;
+    }
+
+    // 11.二进制中1的个数
+    public int NumberOf1(int n) {
+        int count = 0;
+        while (n != 0) {
+            count++;  //只要n不为0则其至少有一个1
+            n = n & (n - 1);
+        }
+        return count;
     }
 }
