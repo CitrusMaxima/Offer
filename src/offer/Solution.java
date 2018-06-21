@@ -227,9 +227,9 @@ public class Solution {
             return 1.0;
         }
         if (exponent > 0) {
-            res = mutiply(base,exponent);
-        }else {
-            res = mutiply(1/base,-exponent);
+            res = mutiply(base, exponent);
+        } else {
+            res = mutiply(1 / base, -exponent);
         }
         return res;
     }
@@ -241,4 +241,30 @@ public class Solution {
         }
         return sum;
     }
+
+    // 13.调整数组顺序使奇数位于偶数前面
+    public void reOrderArray(int[] array) {
+
+        if (array == null || array.length == 0)
+            return;
+
+        for (int i = 1; i < array.length; i++) {
+            int temp = array[i];
+            int j = i - 1;
+            if (array[i] % 2 != 0) {
+                while (j >= 0) {
+                    if (array[j] % 2 != 0) {
+                        break;
+                    } else {
+                        int t = array[j + 1];
+                        array[j + 1] = array[j];
+                        array[j] = t;
+                        j--;
+                    }
+                }
+            }
+            array[j + 1] = temp;
+        }
+    }
+
 }
