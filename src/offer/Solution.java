@@ -91,8 +91,8 @@ public class Solution {
     }
 
     // 5.用两个栈实现队列
-    Stack<Integer> stack1 = new Stack<Integer>();
-    Stack<Integer> stack2 = new Stack<Integer>();
+    Stack<Integer> stack1 = new Stack<>();
+    Stack<Integer> stack2 = new Stack<>();
 
     public void push(int node) {
         stack1.push(node);
@@ -407,6 +407,52 @@ public class Solution {
                 list.add(matrix[i][start]);
             }
         }
+    }
+
+    // 20.包含min函数的栈
+    /*
+    public void push(int node) {
+        stack1.push(node);
+        if (stack2.isEmpty()) {
+            stack2.push(node);
+        }else {
+            if (stack2.peek() > node) {
+                stack2.push(node);
+            }
+        }
+    }
+
+    public void pop() {
+        if (stack1.pop() == stack2.peek()) {
+            stack2.pop();
+        }
+    }
+
+    public int top() {
+        return stack1.peek();
+    }
+
+    public int min() {
+        return stack2.peek();
+    }
+    */
+
+    // 21.栈的压入、弹出序列
+    public boolean IsPopOrder(int [] pushA,int [] popA) {
+        if (pushA == null || popA == null)
+            return false;
+
+        Stack<Integer> stack = new Stack<>();
+        int index = 0;
+
+        for (int i = 0; i < pushA.length; ++i) {
+            stack.push(pushA[i]);
+            while (!stack.isEmpty() && stack.peek() == popA[index]) {
+                stack.pop();
+                index++;
+            }
+        }
+        return stack.isEmpty();
     }
 
 }
