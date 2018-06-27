@@ -505,4 +505,27 @@ public class Solution {
         return true;
     }
 
+    // 24.二叉树中和为某一值的路径
+    private ArrayList<ArrayList<Integer>> resultList = new ArrayList<>();
+    private ArrayList<Integer> list = new ArrayList<>();
+
+    public ArrayList<ArrayList<Integer>> FindPath(TreeNode root, int target) {
+
+        if (root == null)
+            return resultList;
+
+        list.add(root.val);
+        target -= root.val;
+
+        if (target == 0 && root.left == null && root.right == null) {
+            resultList.add(new ArrayList<>(list));
+        } else {
+            FindPath(root.left, target);
+            FindPath(root.right, target);
+        }
+        //每返回上一层一次就要回退一个节点
+        list.remove(list.size() - 1);
+        return resultList;
+    }
+
 }
