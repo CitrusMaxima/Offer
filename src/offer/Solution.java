@@ -2,6 +2,7 @@ package offer;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.Stack;
 
 public class Solution {
@@ -438,7 +439,7 @@ public class Solution {
     */
 
     // 21.栈的压入、弹出序列
-    public boolean IsPopOrder(int [] pushA,int [] popA) {
+    public boolean IsPopOrder(int[] pushA, int[] popA) {
         if (pushA == null || popA == null)
             return false;
 
@@ -453,6 +454,29 @@ public class Solution {
             }
         }
         return stack.isEmpty();
+    }
+
+    // 22.从上往下打印二叉树
+    public ArrayList<Integer> PrintFromTopToBottom(TreeNode root) {
+        ArrayList<Integer> list = new ArrayList<>();
+        if (root == null) {
+            return list;
+        }
+
+        LinkedList<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+
+        while (!queue.isEmpty()) {
+            TreeNode node = queue.poll();
+            list.add(node.val);
+            if (node.left != null) {
+                queue.addLast(node.left);
+            }
+            if (node.right != null) {
+                queue.addLast(node.right);
+            }
+        }
+        return list;
     }
 
 }
