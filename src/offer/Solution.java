@@ -607,4 +607,43 @@ public class Solution {
         c[b] = temp;
     }
 
+    // 28.数组中出现超过一半的数字
+    public int MoreThanHalfNum_Solution(int [] array) {
+        if (array == null || array.length == 0)
+            return 0;
+
+        int maxCount = array[0];
+        int number = array[0];
+        int count = 1;
+
+        for (int i = 1; i < array.length; i++) {
+            if (number != array[i]) {
+                if (count == 0) {
+                    number = array[i];
+                    count = 1;
+                }else {
+                    count--;
+                }
+            }else {
+                count++;
+            }
+
+            if (count == 1) {
+                maxCount = number;
+            }
+        }
+        // 验证
+        int num = 0;
+        for (int j = 0; j < array.length; j++) {
+            if (array[j] == maxCount) {
+                num++;
+            }
+        }
+
+        if (num * 2 > array.length) {
+            return maxCount;
+        }
+        return 0;
+    }
+
 }
