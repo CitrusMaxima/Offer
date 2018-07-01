@@ -548,4 +548,30 @@ public class Solution {
         return head;
     }
 
+    // 26.二叉树搜索与双向链表
+    public TreeNode Convert(TreeNode pRootOfTree) {
+        if (pRootOfTree == null)
+            return null;
+
+        TreeNode left, right;
+        TreeNode head = pRootOfTree;
+
+        if (pRootOfTree.left != null) {
+            left = Convert(pRootOfTree.left);
+            head = left;
+            while (left.right != null) {
+                left = left.right;
+            }
+            left.right = pRootOfTree;
+            pRootOfTree.left = left;
+        }
+        if (pRootOfTree.right != null) {
+            right = Convert(pRootOfTree.right);
+            pRootOfTree.right = right;
+            right.left = pRootOfTree;
+        }
+
+        return head;
+    }
+
 }
