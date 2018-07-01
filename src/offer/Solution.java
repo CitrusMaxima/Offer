@@ -1,9 +1,6 @@
 package offer;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.Stack;
+import java.util.*;
 
 public class Solution {
 
@@ -572,6 +569,42 @@ public class Solution {
         }
 
         return head;
+    }
+
+    // 27.字符串的排列
+    private ArrayList<String> result = new ArrayList<>();
+    private TreeSet<String> temp = new TreeSet<>();
+
+    public ArrayList<String> Permutation(String str) {
+        if (str == null || str.length() == 0)
+            return result;
+        char[] chars = str.toCharArray();
+        Permutation(chars, 0);
+        result.addAll(temp);
+        return result;
+    }
+
+    private void Permutation(char[] chars, int index) {
+        if (chars == null || chars.length == 0)
+            return;
+        if (index < 0 || index > chars.length - 1)
+            return;
+        if (index == chars.length - 1) {
+            temp.add(String.valueOf(chars));
+        } else {
+            for (int i = index; i < chars.length; i++) {
+                swap(chars, index, i);
+                Permutation(chars, index + 1);
+                // 回退
+                swap(chars, index, i);
+            }
+        }
+    }
+
+    private void swap(char[] c, int a, int b) {
+        char temp = c[a];
+        c[a] = c[b];
+        c[b] = temp;
     }
 
 }
