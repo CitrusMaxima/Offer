@@ -528,4 +528,24 @@ public class Solution {
         return resultList;
     }
 
+    // 25.复杂链表的复制
+    public RandomListNode Clone(RandomListNode pHead) {
+        if (pHead == null)
+            return null;
+
+        RandomListNode head = new RandomListNode(pHead.label);
+        RandomListNode temp = head;
+
+        while (pHead.next != null) {
+            temp.next = new RandomListNode(pHead.next.label);
+            if (pHead.random != null) {
+                temp.random = new RandomListNode(pHead.random.label);
+            }
+            pHead = pHead.next;
+            temp = temp.next;
+        }
+
+        return head;
+    }
+
 }
