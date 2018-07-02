@@ -668,4 +668,23 @@ public class Solution {
         return list;
     }
 
+    // 30.连续子数组的最大和
+    public int FindGreatestSumOfSubArray(int[] array) {
+        if (array == null || array.length == 0)
+            return 0;
+        int cur = array[0];
+        int greatest = array[0];
+
+        for (int i = 1; i < array.length; i++) {
+            if (cur < 0)
+                cur = array[i];
+            else
+                cur += array[i];
+
+            if (cur > greatest)
+                greatest = cur;
+        }
+        return greatest;
+    }
+
 }
