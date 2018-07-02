@@ -713,4 +713,31 @@ public class Solution {
         return count;
     }
 
+    // 32.把数组排成最小的数
+    public String PrintMinNumber(int[] numbers) {
+        if (numbers == null || numbers.length == 0)
+            return "";
+        int len = numbers.length;
+        String[] str = new String[len];
+        StringBuilder stringbuilder = new StringBuilder();
+        for (int i = 0; i < len; i++) {
+            str[i] = String.valueOf(numbers[i]);            //也可用str[i] = "" + numbers[i];将整数数组转化为字符串数组
+        }
+		/*在基本数据中，compareTo()是比较两个Character 对象；
+		在 Boolean中，是用boolean的实例于其它实例进行比较；
+		在String 中，则是按照字典顺序进行比较，返回的值是一个int 型。*/
+        Arrays.sort(str, new Comparator<String>() {
+            @Override
+            public int compare(String s1, String s2) {
+                String c1 = s1 + s2;
+                String c2 = s2 + s1;
+                return c1.compareTo(c2);            //在String中，compareTo是按照字典顺序进行比较，返回的值是一个int型。
+            }
+        });
+        for (int i = 0; i < len; i++) {
+            stringbuilder.append(str[i]);
+        }
+        return stringbuilder.toString();
+    }
+
 }
