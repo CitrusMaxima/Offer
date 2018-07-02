@@ -608,7 +608,7 @@ public class Solution {
     }
 
     // 28.数组中出现超过一半的数字
-    public int MoreThanHalfNum_Solution(int [] array) {
+    public int MoreThanHalfNum_Solution(int[] array) {
         if (array == null || array.length == 0)
             return 0;
 
@@ -621,10 +621,10 @@ public class Solution {
                 if (count == 0) {
                     number = array[i];
                     count = 1;
-                }else {
+                } else {
                     count--;
                 }
-            }else {
+            } else {
                 count++;
             }
 
@@ -644,6 +644,28 @@ public class Solution {
             return maxCount;
         }
         return 0;
+    }
+
+    // 29.最小的K个数
+    public ArrayList<Integer> GetLeastNumbers_Solution(int[] input, int k) {
+        if (input == null)
+            return null;
+
+        ArrayList<Integer> list = new ArrayList<>(k);
+        if (k > input.length)
+            return list;
+        TreeSet<Integer> tree = new TreeSet<>();
+        for (int i = 0; i < input.length; i++) {
+            tree.add(input[i]);
+        }
+        int i = 0;
+        for (Integer elem : tree) {
+            if (i >= k)
+                break;
+            list.add(elem);
+            i++;
+        }
+        return list;
     }
 
 }
