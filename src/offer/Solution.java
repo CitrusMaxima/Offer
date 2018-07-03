@@ -763,4 +763,26 @@ public class Solution {
         return arr[index - 1];
     }
 
+    // 34.第一个只出现一次的字符
+    public int FirstNotRepeatingChar(String str) {
+        if (str == null || str.length() == 0)
+            return -1;
+
+        char[] c = str.toCharArray();
+        LinkedHashMap<Character, Integer> hashMap = new LinkedHashMap<>();
+
+        for (char item : c) {
+            if (hashMap.containsKey(item))
+                hashMap.put(item, hashMap.get(item) + 1);
+            else
+                hashMap.put(item, 1);
+        }
+
+        for (int i = 0; i < str.length(); ++i) {
+            if (hashMap.get(str.charAt(i)) == 1)
+                return i;
+        }
+        return -1;
+    }
+
 }
