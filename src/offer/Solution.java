@@ -785,4 +785,59 @@ public class Solution {
         return -1;
     }
 
+    // 35.数组中的逆序对
+    int count = 0;
+
+    public int InversePairs(int [] array) {
+        if(array==null)
+            return 0;
+        mergeSort(array,0,array.length-1);
+        return count;
+    }
+
+    private void mergeSort(int[] data,int start,int end) {
+        int mid = (start + end) / 2;
+        if (start < end) {
+            mergeSort(data, start, mid);            // 左边有序
+            mergeSort(data, mid + 1, end);    // 右边有序
+            merge(data, start, mid, end);           // 将两个有序数组合并
+        }
+    }
+
+    // 将有二个有序数列data[start...mid]和data[mid...end]合并。
+    public void merge(int[] data,int start,int mid,int end) {
+        int arr[] = new int[end - start + 1];
+        int c = 0;
+        int s = start;
+        int index = mid + 1;
+        while (start <= mid && index <= end) {
+            if (data[start] < data[index]) {
+                // 左数组比右数组小
+                arr[c++] = data[start++];
+            } else {
+                // 左数组比右数组大
+                arr[c++] = data[index++];
+                // 因为如果a[i]此时比右数组的当前元素a[j]大，
+                // 那么左数组中a[i]后面的元素就都比a[j]大
+                // 【因为数组此时是有序数组】
+                count += mid +1 - start;
+                count %= 1000000007;
+            }
+        }
+
+        while (start <= mid) {
+            arr[c++] = data[start++];
+        }
+
+        while (index <= end) {
+            arr[c++] = data[index++];
+        }
+
+        for (int d : arr) {
+            data[s++] = d;
+        }
+    }
+
+
+
 }
