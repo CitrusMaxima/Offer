@@ -788,14 +788,14 @@ public class Solution {
     // 35.数组中的逆序对
     int count = 0;
 
-    public int InversePairs(int [] array) {
-        if(array==null)
+    public int InversePairs(int[] array) {
+        if (array == null)
             return 0;
-        mergeSort(array,0,array.length-1);
+        mergeSort(array, 0, array.length - 1);
         return count;
     }
 
-    private void mergeSort(int[] data,int start,int end) {
+    private void mergeSort(int[] data, int start, int end) {
         int mid = (start + end) / 2;
         if (start < end) {
             mergeSort(data, start, mid);            // 左边有序
@@ -805,7 +805,7 @@ public class Solution {
     }
 
     // 将有二个有序数列data[start...mid]和data[mid...end]合并。
-    public void merge(int[] data,int start,int mid,int end) {
+    public void merge(int[] data, int start, int mid, int end) {
         int arr[] = new int[end - start + 1];
         int c = 0;
         int s = start;
@@ -820,7 +820,7 @@ public class Solution {
                 // 因为如果a[i]此时比右数组的当前元素a[j]大，
                 // 那么左数组中a[i]后面的元素就都比a[j]大
                 // 【因为数组此时是有序数组】
-                count += mid +1 - start;
+                count += mid + 1 - start;
                 count %= 1000000007;
             }
         }
@@ -843,11 +843,62 @@ public class Solution {
         ListNode p1 = pHead1;
         ListNode p2 = pHead2;
 
-        while (p1 != p2){
+        while (p1 != p2) {
             p1 = (p1 != null ? p1.next : pHead2);
             p2 = (p2 != null ? p2.next : pHead1);
         }
         return p1;
+    }
+
+    // 37.数字在排序数组中出现的次数
+    public int GetNumberOfK(int[] array, int k) {
+        // 判断数组是否为空
+        if (array == null || array.length == 0)
+            return 0;
+
+        int length = array.length;
+        // 判断k是否在数组范围中
+        if (k < array[0] || k > array[length - 1])
+            return 0;
+
+        int firstK = getFirstK(array, k, 0, length - 1);
+        int lastK = getLastK(array, k, 0, length - 1);
+        if (firstK != -1 && lastK != -1)
+            return lastK - firstK + 1;
+        return 0;
+    }
+
+    // 递归写法
+    private int getFirstK(int[] array, int k, int start, int end) {
+        if (start > end)
+            return -1;
+        int mid = (start + end) >> 1;
+        if (array[mid] > k)
+            return getFirstK(array, k, start, mid - 1);
+        else if (array[mid] < k)
+            return getFirstK(array, k, mid + 1, end);
+        else if (mid >= 1 && array[mid - 1] == k)
+            return getFirstK(array, k, start, mid - 1);
+        else
+            return mid;
+    }
+
+    // 循环写法
+    private int getLastK(int[] array, int k, int start, int end) {
+        int length = array.length;
+        int mid = (start + end) >> 1;
+        while (start <= end) {
+            if (array[mid] > k)
+                end = mid - 1;
+            else if (array[mid] < k)
+                start = mid + 1;
+            else if (mid + 1 < length && array[mid + 1] == k)
+                start = mid + 1;
+            else
+                return mid;
+            mid = (start + end) >> 1;
+        }
+        return -1;
     }
 
 }
