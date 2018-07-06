@@ -1011,4 +1011,18 @@ public class Solution {
         return str.substring(n, length + n);
     }
 
+    // 44.翻转单词顺序列
+    public String ReverseSentence(String str) {
+        if (str == null || str.trim().equals(""))
+            return str;
+        String[] s = str.split(" ");
+        StringBuffer sb = new StringBuffer();
+        for (int i = s.length; i > 0; --i) {
+            sb.append(s[i-1]);
+            if (i > 1)
+                sb.append(" ");
+        }
+        return sb.toString();
+    }
+
 }
