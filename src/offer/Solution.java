@@ -982,7 +982,7 @@ public class Solution {
     }
 
     // 42.和为S的两个数字
-    public ArrayList<Integer> FindNumbersWithSum(int [] array,int sum) {
+    public ArrayList<Integer> FindNumbersWithSum(int[] array, int sum) {
         ArrayList<Integer> list = new ArrayList<>();
         if (array == null || array.length < 2)
             return list;
@@ -999,6 +999,16 @@ public class Solution {
                 ++i;
         }
         return list;
+    }
+
+    // 43.左旋字符串
+    public String LeftRotateString(String str, int n) {
+        if (str == null || str.length() == 0)
+            return "";
+        int length = str.length();
+        n = n % length;
+        str += str;
+        return str.substring(n, length + n);
     }
 
 }
