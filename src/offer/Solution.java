@@ -1131,4 +1131,16 @@ public class Solution {
         }
         return B;
     }
+
+    // 51.链表中环的入口节点
+    public ListNode EntryNodeOfLoop(ListNode pHead) {
+        HashSet<ListNode> set = new HashSet<ListNode>();
+        while (pHead != null) {
+            if (!set.add(pHead)) {
+                return pHead;
+            }
+            pHead = pHead.next;
+        }
+        return null;
+    }
 }
