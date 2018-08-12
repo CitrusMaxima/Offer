@@ -1072,4 +1072,18 @@ public class Solution {
         return i;                   //返回跳出循环时的i,即最后一个被设置为-1的元素
     }
 
+    // 47.求1+2+3+...+n
+    public int Sum_Solution(int n) {
+        return sum(n);
+    }
+
+    int sum(int n) {
+        try {
+            int i = 1 % n;
+            return n + sum(n - 1);
+        } catch (Exception e) {
+            return 0;
+        }
+    }
+
 }
